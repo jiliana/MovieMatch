@@ -73,8 +73,20 @@ Optional:
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### Post
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | code          | String   | unique code for the group |
+   | movieTitle    | String   | name of movie |
+   | movieImage    | File     | image of movie |
+   | noVotes       | Number   | number of 'no' votes to a movie |
+   | yesVotes      | Number   | number of 'yes' votes to a movie |
+   
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
+#### List of network requests by screen
+  - Code Screen
+      - (Create/Read) Create a new code or use an existing code
+   - Movie Choosing Screen
+      - (Create) Create a 'yes/no' vote for each movie
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
