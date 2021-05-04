@@ -65,6 +65,11 @@ Optional:
 <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+<img src="https://i.imgur.com/vKA9O3M.png" width= 100>
+<img src="https://i.imgur.com/ulqaE3u.png" width= 100>
+<img src="https://i.imgur.com/3JuhQVR.png" width= 100>
+<img src="https://i.imgur.com/FLiGtMK.png" width= 100>
+<img src="https://i.imgur.com/xk7rzRQ.png" width= 100>
 
 ### [BONUS] Interactive Prototype
 ![](https://i.imgur.com/lrgebJ9.gif)
