@@ -67,6 +67,7 @@ Optional:
 ### [BONUS] Digital Wireframes & Mockups
 
 ### [BONUS] Interactive Prototype
+![](https://i.imgur.com/lrgebJ9.gif)
 
 ## Schema 
 [This section will be completed in Unit 9]
