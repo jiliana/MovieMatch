@@ -73,20 +73,46 @@ Optional:
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-#### Post
+#### Movie Ranking
 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | code          | String   | unique code for the group |
+   | objectId      | String   | unique id for the group's movie |
+   | code          | Pointer to Code | unique code for the group | 
    | movieTitle    | String   | name of movie |
    | movieImage    | File     | image of movie |
    | noVotes       | Number   | number of 'no' votes to a movie |
    | yesVotes      | Number   | number of 'yes' votes to a movie |
+
    
 ### Networking
 #### List of network requests by screen
   - Code Screen
       - (Create/Read) Create a new code or use an existing code
-   - Movie Choosing Screen
+  - Movie Choosing Screen
       - (Create) Create a 'yes/no' vote for each movie
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+  - Ranking Screen
+      - (Read/GET) Query all movie ranking results of group
+
+    ```
+    let query = PFQuery(className:"MovieRanking")
+    query.whereKey("code", equalTo: currentUser)
+    query.order(byDescending: "yesVotes")
+    query.findObjectsInBackground { (movieRankings: [PFObject]?, error: Error?) in
+       if let error = error { 
+          print(error.localizedDescription)
+       } else if let movieRankings = movieRankings {
+          print("Successfully retrieved \(movieRankings.count) movieRankings.")
+      // TODO: Do something with movie rankings...
+       }
+    }
+    ```
+   
+**[OPTIONAL: Existing API Endpoints]**
+
+**Now Playing API from The Movie Database**
+- Base URL - https://developers.themoviedb.org/3/movies/get-now-playing
+
+| HTTP Verb	| Endpoint      | Description |
+   | ------------- | -------- | ------------|
+   | GET      | /movie/now_playing  | Get a list of movies in theatre |
