@@ -26,13 +26,13 @@ Helps find a movie to watch in a group setting. Everyone within the same group w
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-[] List of movies
-[] User can swipe movies right or left based on their preference
-[] Generate code and code login (kahoot style)
+- [ ] List of movies
+- [ ] User can swipe movies right or left based on their preference
+- [ ] Generate code and code login (kahoot style)
 
 **Optional Nice-to-have Stories**
-[] Specified moveis based on streaming services
-[] Saving user information/preference
+- [ ] Specified moveis based on streaming services
+- [ ] Saving user information/preference
 
 ### 2. Screen Archetypes
 
