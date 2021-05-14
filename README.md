@@ -28,7 +28,7 @@ Helps find a movie to watch in a group setting. Everyone within the same group w
 **Required Must-have Stories**
 - [ ] List of movies
 - [ ] User can swipe movies right or left based on their preference
-- [ ] Generate code and code login (kahoot style)
+- [x] Generate code and code login (kahoot style)
 - [ ] Rankings of the group's favorite movies
 
 **Optional Nice-to-have Stories**
