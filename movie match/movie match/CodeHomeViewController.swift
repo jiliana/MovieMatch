@@ -12,14 +12,29 @@ class CodeHomeViewController: UIViewController {
     
     @IBOutlet weak var codeField: UITextField!
     @IBOutlet weak var maxUsersField: UITextField!
+    @IBOutlet weak var invalidCodeLabel: UILabel!
+    @IBOutlet weak var invalidNumberLabel: UILabel!
+    @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var generateButton: UIButton!
     
     
-    
+    //keeps track of the code so we can use it in following segue
+    var code: String = ""
+    //keeps track of total user to use in following segue
+    var totalUsers: String = ""
+    //keeps track of the users that have entered
+    var currentUsers: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //hides invalid warnings
+        invalidCodeLabel.isHidden = true
+        invalidNumberLabel.isHidden = true
 
-        // Do any additional setup after loading the view.
+        //round button edges
+        enterButton.layer.cornerRadius = 5
+        generateButton.layer.cornerRadius = 5
+        
         
     }
     
@@ -36,13 +51,27 @@ class CodeHomeViewController: UIViewController {
                 // Log details of the failure
                 print(error.localizedDescription)
             } else if let objects = objects {
+                //updates code variable
+                self.code = codeInput
+                //creates room object based on object found by query
+                if let room = try? query.getFirstObject() {
+                    // updates currentUsers and total users
+                    //CURRENT USERS DOES NOT WORK!
+                    self.currentUsers = room["currentUsers"] as! Int + 1
+                    room.setValue(self.currentUsers, forKey: "currentUsers")
+                    self.totalUsers = room["maxUsers"] as! String
+                }
                 // The find succeeded.
                 print("Successfully retrieved \(objects.count) code.")
                 // Do something with the found objects
                 if (objects.count == 0) {
                     print("No room with specified code.")
+                    //reveal invalid code warning
+                    self.invalidCodeLabel.isHidden = false
+                    
                 }
                 else {
+                    self.invalidCodeLabel.isHidden = true
                     self.performSegue(withIdentifier: "enterWaitingRoomSegue", sender: nil)
                 }
             }
@@ -58,19 +87,32 @@ class CodeHomeViewController: UIViewController {
         let uuid = UUID().uuidString
         room["code"] = String(uuid.split(separator: "-")[0])
         room["maxUsers"] = maxUsersField.text!
-        
+        room["currentUsers"] = 1
         // Saves PFObject "room" with unique "code" key
         room.saveInBackground { (success, error) in
-            if (success) {
+            if (success && self.maxUsersField.text != "" && self.maxUsersField.text != "0") {
+                self.invalidNumberLabel.isHidden = true
                 print("room object is saved. code is \(String(describing: room["code"]))")
+    
+                //updates code and total users
+                self.code = room["code"] as! String
+                self.totalUsers = self.maxUsersField.text!
+                self.currentUsers = room["currentUsers"] as! Int
                 self.performSegue(withIdentifier: "enterWaitingRoomSegue", sender: nil)
             } else {
+                self.invalidNumberLabel.isHidden = false
                 print("Error: \(error?.localizedDescription)")
             }
         }
         
-
-        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! WaitingRoomViewController
+        destination.currentUsers = currentUsers
+        destination.code = code
+        destination.maxUsers = totalUsers
     }
     /*
     // MARK: - Navigation

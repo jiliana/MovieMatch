@@ -9,12 +9,37 @@ import UIKit
 
 class WaitingRoomViewController: UIViewController {
 
+    @IBOutlet weak var codeisLabel: UILabel!
+    @IBOutlet weak var peopleEnteredLabel: UILabel!
+    @IBOutlet weak var swippingButton: UIButton!
+    
+    var maxUsers: String = ""
+    var code: String = ""
+    var currentUsers: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        codeisLabel.text = "Code is \(code)"
+        peopleEnteredLabel.text = "\(currentUsers) out of \(maxUsers) entered"
+        swippingButton.layer.cornerRadius = 5
     }
     
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "codeHomeSegue", sender: nil)
+    }
+    
+    @IBAction func onSwipeButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "movieSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! MovieSwipeViewController
+        destination.code = code
+    }
 
     /*
     // MARK: - Navigation

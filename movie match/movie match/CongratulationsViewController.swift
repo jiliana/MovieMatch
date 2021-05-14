@@ -1,24 +1,20 @@
 //
-//  MovieSwipeViewController.swift
+//  CongratulationsViewController.swift
 //  movie match
 //
-//  Created by Ana Carolina Cunha on 5/13/21.
+//  Created by Ana Carolina Cunha on 5/14/21.
 //
 
 import UIKit
 
-class MovieSwipeViewController: UIViewController {
+class CongratulationsViewController: UIViewController {
 
-    @IBOutlet weak var codeLabel: UILabel!
-    var code: String = ""
-    @IBOutlet weak var cardView: UIView!
-    @IBOutlet weak var rankingsButton: UIButton!
+    @IBOutlet weak var homeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        codeLabel.text = "Code: \(code)"
-        rankingsButton.layer.cornerRadius = 5
-        
+
+        homeButton.layer.cornerRadius = 5
     }
     
 

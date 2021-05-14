@@ -20,6 +20,9 @@
 		9C286E91264E1F7A00E059C9 /* CodeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C286E90264E1F7A00E059C9 /* CodeHomeViewController.swift */; };
 		9C286E93264E1F9200E059C9 /* WaitingRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C286E92264E1F9200E059C9 /* WaitingRoomViewController.swift */; };
 		9C286E95264E1FAD00E059C9 /* MovieSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C286E94264E1FAD00E059C9 /* MovieSwipeViewController.swift */; };
+		9C8BC03E264F08D7003F294E /* RankingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BC03D264F08D7003F294E /* RankingsViewController.swift */; };
+		9C8BC040264F0988003F294E /* RankingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BC03F264F0988003F294E /* RankingsTableViewCell.swift */; };
+		9C8BC042264F0BF8003F294E /* CongratulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BC041264F0BF8003F294E /* CongratulationsViewController.swift */; };
 		C862C161A8D334C67A5D917C /* Pods_movie_match_movie_matchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AA5741BE20208630BDAC05 /* Pods_movie_match_movie_matchUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +67,9 @@
 		9C286E90264E1F7A00E059C9 /* CodeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeHomeViewController.swift; sourceTree = "<group>"; };
 		9C286E92264E1F9200E059C9 /* WaitingRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoomViewController.swift; sourceTree = "<group>"; };
 		9C286E94264E1FAD00E059C9 /* MovieSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSwipeViewController.swift; sourceTree = "<group>"; };
+		9C8BC03D264F08D7003F294E /* RankingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsViewController.swift; sourceTree = "<group>"; };
+		9C8BC03F264F0988003F294E /* RankingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsTableViewCell.swift; sourceTree = "<group>"; };
+		9C8BC041264F0BF8003F294E /* CongratulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsViewController.swift; sourceTree = "<group>"; };
 		D1A8592F95726A7CA4965846 /* Pods-movie match-movie matchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie match-movie matchUITests.release.xcconfig"; path = "Target Support Files/Pods-movie match-movie matchUITests/Pods-movie match-movie matchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D25E5737ED119B0D2C04B46E /* Pods-movie matchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie matchTests.debug.xcconfig"; path = "Target Support Files/Pods-movie matchTests/Pods-movie matchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F85791F1E0BE7872698EF83B /* Pods-movie match-movie matchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie match-movie matchUITests.debug.xcconfig"; path = "Target Support Files/Pods-movie match-movie matchUITests/Pods-movie match-movie matchUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +151,9 @@
 				9C286E90264E1F7A00E059C9 /* CodeHomeViewController.swift */,
 				9C286E92264E1F9200E059C9 /* WaitingRoomViewController.swift */,
 				9C286E94264E1FAD00E059C9 /* MovieSwipeViewController.swift */,
+				9C8BC03D264F08D7003F294E /* RankingsViewController.swift */,
+				9C8BC03F264F0988003F294E /* RankingsTableViewCell.swift */,
+				9C8BC041264F0BF8003F294E /* CongratulationsViewController.swift */,
 			);
 			path = "movie match";
 			sourceTree = "<group>";
@@ -415,11 +424,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C8BC042264F0BF8003F294E /* CongratulationsViewController.swift in Sources */,
 				9C286E65264E11AB00E059C9 /* ViewController.swift in Sources */,
 				9C286E61264E11AB00E059C9 /* AppDelegate.swift in Sources */,
 				9C286E91264E1F7A00E059C9 /* CodeHomeViewController.swift in Sources */,
 				9C286E93264E1F9200E059C9 /* WaitingRoomViewController.swift in Sources */,
 				9C286E95264E1FAD00E059C9 /* MovieSwipeViewController.swift in Sources */,
+				9C8BC03E264F08D7003F294E /* RankingsViewController.swift in Sources */,
+				9C8BC040264F0988003F294E /* RankingsTableViewCell.swift in Sources */,
 				9C286E63264E11AB00E059C9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
