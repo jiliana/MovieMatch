@@ -56,10 +56,18 @@ class CodeHomeViewController: UIViewController {
                 //creates room object based on object found by query
                 if let room = try? query.getFirstObject() {
                     // updates currentUsers and total users
-                    //CURRENT USERS DOES NOT WORK!
-                    self.currentUsers = room["currentUsers"] as! Int + 1
+                    room.incrementKey("currentUsers")
+                    self.currentUsers = room["currentUsers"] as! Int
                     room.setValue(self.currentUsers, forKey: "currentUsers")
                     self.totalUsers = room["maxUsers"] as! String
+                    room.saveInBackground { (success, error) in
+                        if (success) {
+                            print("currentUsers has been incremented")
+                        }
+                        else {
+                            print("Error: \(error?.localizedDescription ?? "currentUsers cannot be incremented")")
+                        }
+                    }
                 }
                 // The find succeeded.
                 print("Successfully retrieved \(objects.count) code.")
@@ -101,7 +109,7 @@ class CodeHomeViewController: UIViewController {
                 self.performSegue(withIdentifier: "enterWaitingRoomSegue", sender: nil)
             } else {
                 self.invalidNumberLabel.isHidden = false
-                print("Error: \(error?.localizedDescription)")
+                print("Error: \(error?.localizedDescription ?? "cannot save room object")")
             }
         }
         
