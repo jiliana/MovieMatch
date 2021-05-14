@@ -41,7 +41,11 @@ class CodeHomeViewController: UIViewController {
 
     @IBAction func onEnterCode(_ sender: Any) {
         let codeInput = codeField.text!
-        
+        if (codeInput.isEmpty) {
+            //reveal invalid code warning
+            self.invalidCodeLabel.text = "Please type in a code."
+            self.invalidCodeLabel.isHidden = false
+        }
         // Finds PFObject "room" with "code" = codeInput
         // If exists, then enter waiting room
         let query = PFQuery(className: "Room")
@@ -56,16 +60,30 @@ class CodeHomeViewController: UIViewController {
                 //creates room object based on object found by query
                 if let room = try? query.getFirstObject() {
                     // updates currentUsers and total users
-                    room.incrementKey("currentUsers")
                     self.currentUsers = room["currentUsers"] as! Int
                     room.setValue(self.currentUsers, forKey: "currentUsers")
                     self.totalUsers = room["maxUsers"] as! String
+                    let maxUsersInt = Int(self.totalUsers)
+                    print(self.currentUsers)
+                    print(maxUsersInt!)
+                    
+                    // increments currentUsers if room is not full
+                    if (self.currentUsers < maxUsersInt!) {
+                        print("increment")
+                        room.incrementKey("currentUsers")
+                        self.currentUsers = room["currentUsers"] as! Int
+                        
+                    }
+                    // else, sets error
+                    else {
+                        self.totalUsers = "fullRoom"
+                    }
                     room.saveInBackground { (success, error) in
                         if (success) {
-                            print("currentUsers has been incremented")
+                            print("currentUsers has been saved")
                         }
                         else {
-                            print("Error: \(error?.localizedDescription ?? "currentUsers cannot be incremented")")
+                            print("Error: \(error?.localizedDescription ?? "currentUsers cannot be saved")")
                         }
                     }
                 }
@@ -75,8 +93,14 @@ class CodeHomeViewController: UIViewController {
                 if (objects.count == 0) {
                     print("No room with specified code.")
                     //reveal invalid code warning
+                    self.invalidCodeLabel.text = "Invalid code. Please try again."
                     self.invalidCodeLabel.isHidden = false
-                    
+                }
+                else if (self.totalUsers == "fullRoom") {
+                    print("Room aready full.")
+                    // reveal full room warning
+                    self.invalidCodeLabel.text = "Room already full."
+                    self.invalidCodeLabel.isHidden = false
                 }
                 else {
                     self.invalidCodeLabel.isHidden = true
@@ -96,23 +120,27 @@ class CodeHomeViewController: UIViewController {
         room["code"] = String(uuid.split(separator: "-")[0])
         room["maxUsers"] = maxUsersField.text!
         room["currentUsers"] = 1
+        
         // Saves PFObject "room" with unique "code" key
-        room.saveInBackground { (success, error) in
-            if (success && self.maxUsersField.text != "" && self.maxUsersField.text != "0") {
-                self.invalidNumberLabel.isHidden = true
-                print("room object is saved. code is \(String(describing: room["code"]))")
-    
-                //updates code and total users
-                self.code = room["code"] as! String
-                self.totalUsers = self.maxUsersField.text!
-                self.currentUsers = room["currentUsers"] as! Int
-                self.performSegue(withIdentifier: "enterWaitingRoomSegue", sender: nil)
-            } else {
-                self.invalidNumberLabel.isHidden = false
-                print("Error: \(error?.localizedDescription ?? "cannot save room object")")
+        if (Int(self.maxUsersField.text!) ?? -1 > 0) {
+            room.saveInBackground { (success, error) in
+                if (success) {
+                    self.invalidNumberLabel.isHidden = true
+                    print("room object is saved. code is \(String(describing: room["code"]))")
+        
+                    //updates code and total users
+                    self.code = room["code"] as! String
+                    self.totalUsers = self.maxUsersField.text!
+                    self.currentUsers = room["currentUsers"] as! Int
+                    self.performSegue(withIdentifier: "enterWaitingRoomSegue", sender: nil)
+                } else {
+                    print("Error: \(error?.localizedDescription ?? "cannot save room object")")
+                }
             }
         }
-        
+        else {
+            self.invalidNumberLabel.isHidden = false
+        }
     }
     
     
