@@ -61,7 +61,7 @@ class MovieSwipeViewController: UIViewController {
         var movie = movies[0]
         for item in movies {
             movie = item
-            movieTitleArr.append(movie["poster_path"] as! String)
+            movieImageArr.append(movie["poster_path"] as! String)
         }
     }
     // initialize movie synopsis
@@ -69,8 +69,10 @@ class MovieSwipeViewController: UIViewController {
         var movie = movies[0]
         for item in movies {
             movie = item
-            movieTitleArr.append(movie["overview"] as! String)
+            movieSynopsisArr.append(movie["overview"] as! String)
         }
+        
+        
     }
     
 
