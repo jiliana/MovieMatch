@@ -61,9 +61,11 @@ class MovieSwipeViewController: UIViewController {
 
                 self.movies = dataDictionary["results"] as! [[String:Any]]
                 
+                /*
                 self.initializeMovieTitle()
                 self.initializeMovieImage()
                 self.initializeMovieSynopsis()
+                */
                 
                 //print(dataDictionary)
                 
@@ -153,17 +155,14 @@ class MovieSwipeViewController: UIViewController {
     }
     
     func setCardView(title: String, image: String, synopsis: String) {
-        //let movie = movies[0]
         movieTitleLabel.text = title
         synopsisLabel.text = synopsis
-        let baseUrl = "https://image.tmdb.org/t/p/w500"
+        let baseUrl = "https://image.tmdb.org/t/p/w780"
         let posterPath = image
         let posterUrl = URL(string: baseUrl + posterPath)
         
         movieImage.af_setImage(withURL: posterUrl!)
-        
-        
-        //synopsisLabel.text = movie["overview"] as! String
+
     }
     
     
