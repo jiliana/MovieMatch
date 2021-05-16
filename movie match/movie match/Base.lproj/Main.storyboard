@@ -303,6 +303,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.89669947687224671" green="0.89669947687224671" blue="0.89669947687224671" alpha="0.30414496527777779" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nS9-cY-SuS"/>
@@ -311,7 +312,10 @@
                     <connections>
                         <outlet property="cardView" destination="hTW-a0-Kx7" id="Wjp-7t-W6Q"/>
                         <outlet property="codeLabel" destination="dLx-XG-xBk" id="22M-hh-gY0"/>
+                        <outlet property="movieImage" destination="L25-ZT-Vks" id="crU-rF-vXh"/>
+                        <outlet property="movieTitleLabel" destination="ZAZ-Lr-JbA" id="IqV-Vo-Yws"/>
                         <outlet property="rankingsButton" destination="Eg6-tS-hW9" id="IwJ-tG-Vaz"/>
+                        <outlet property="synopsisLabel" destination="dwZ-oR-PKG" id="eCN-Mn-nNy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mnt-gw-HPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -426,9 +430,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TZE-HN-yDV"/>
         <segue reference="GZq-eX-EER"/>
-        <segue reference="pqx-VK-gV1"/>
+        <segue reference="qRe-Qq-2vd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
