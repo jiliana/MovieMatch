@@ -9,7 +9,7 @@ import UIKit
 
 class RankingsViewController: UIViewController, UITableViewDelegate{
     
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,6 +30,9 @@ class RankingsViewController: UIViewController, UITableViewDelegate{
  */
     
 
+    @IBAction func onBackButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "movieSwipeSegue", sender: nil)
+    }
     /*
     // MARK: - Navigation
 

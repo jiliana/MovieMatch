@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -236,13 +236,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3w7-Y7-gFt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ej1-MF-8Mg">
+                    <rect key="frame" x="0.0" y="0.0" width="25" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="image" image="arrow.turn.up.left" catalog="system" renderingMode="original"/>
+                    </state>
+                    <connections>
+                        <action selector="onBackButton:" destination="YCr-Vj-acE" eventType="touchUpInside" id="Euc-K5-zPO"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="774" y="75"/>
         </scene>
         <!--Movie Swipe View Controller-->
         <scene sceneID="VES-6y-VEr">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Ke6-PY-cVe" customClass="MovieSwipeViewController" customModule="movie_match" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="Ke6-PY-cVe" customClass="MovieSwipeViewController" customModule="movie_match" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oTn-ms-Qyx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -381,7 +392,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="noLabel" destination="9J2-Er-05Y" id="jye-1g-ve8"/>
-                                            <outlet property="posterView" destination="PXU-Aj-QRd" id="xXy-pX-eYi"/>
+                                            <outlet property="posterView" destination="PXU-Aj-QRd" id="OSS-vt-LXb"/>
                                             <outlet property="synopsisLabel" destination="WEx-it-38Y" id="IVm-01-EFr"/>
                                             <outlet property="titleLabel" destination="VFu-5O-X9o" id="ATw-Mw-70n"/>
                                             <outlet property="yesLabel" destination="1l0-iZ-dtO" id="RJW-mS-Cle"/>
@@ -389,6 +400,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVN-82-P0x">
+                                <rect key="frame" x="20" y="44" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.turn.up.left" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onBackButton:" destination="bTS-jh-GIX" eventType="touchUpInside" id="umb-jb-bDh"/>
+                                    <segue destination="Ke6-PY-cVe" kind="presentation" identifier="movieSwipeSegue" animates="NO" id="GZq-eX-EER"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xi9-UW-Erq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -403,6 +426,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="TZE-HN-yDV"/>
+        <segue reference="GZq-eX-EER"/>
         <segue reference="pqx-VK-gV1"/>
     </inferredMetricsTieBreakers>
     <resources>
