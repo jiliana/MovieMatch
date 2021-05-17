@@ -123,4 +123,4 @@ Optional:
 
 **Sprint 1**
 
-![](http://g.recordit.co/Prw5x73xRy.gif)
+![](https://i.imgur.com/Xh4Ak6w.gif)
