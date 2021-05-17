@@ -8,6 +8,7 @@ Original App Design Project - README Template
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
+3. [Progress GIFs](#GIFs)
 
 ## Overview
 ### Description
@@ -117,3 +118,9 @@ Optional:
 | HTTP Verb	| Endpoint      | Description |
    | ------------- | -------- | ------------|
    | GET      | /movie/now_playing  | Get a list of movies in theatre |
+   
+## GIFs
+
+**Sprint 1**
+
+![]http://g.recordit.co/Prw5x73xRy.gif
