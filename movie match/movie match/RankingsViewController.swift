@@ -11,6 +11,7 @@ class RankingsViewController: UIViewController, UITableViewDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
+    var currIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,11 @@ class RankingsViewController: UIViewController, UITableViewDelegate{
 
     @IBAction func onBackButton(_ sender: Any) {
         self.performSegue(withIdentifier: "movieSwipeSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let MovieSwipeViewController = segue.destination as! MovieSwipeViewController
+        MovieSwipeViewController.currIndex = self.currIndex
     }
     /*
     // MARK: - Navigation

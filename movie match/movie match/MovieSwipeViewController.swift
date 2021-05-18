@@ -70,9 +70,9 @@ class MovieSwipeViewController: UIViewController {
                 //print(dataDictionary)
                 
                 // set first sliding entry
-                self.currTitle = self.movies[0]["title"] as! String
-                self.currSynopsis = self.movies[0]["overview"] as! String
-                self.currImage = self.movies[0]["poster_path"] as! String
+                self.currTitle = self.movies[self.currIndex]["title"] as! String
+                self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
+                self.currImage = self.movies[self.currIndex]["poster_path"] as! String
                 self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
 
              }
@@ -166,7 +166,11 @@ class MovieSwipeViewController: UIViewController {
     }
     
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let RankingsViewController = segue.destination as! RankingsViewController
+        RankingsViewController.currIndex = self.currIndex
+    }
+    
     /*
     // MARK: - Navigation
 
