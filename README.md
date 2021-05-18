@@ -120,11 +120,9 @@ Optional:
    | GET      | /movie/now_playing  | Get a list of movies in theatre |
    
 ## GIFs
-
 ### Sprint 1
 **Milestones: App Layout & Group Code Set Up**
 Code Generation + Navigation
 ![](https://i.imgur.com/Xh4Ak6w.gif)
 Page Layout
-![](https://i.imgur.com/rP1UsEK.png)
-
+<img src="https://i.imgur.com/rP1UsEK.png" width=600>
