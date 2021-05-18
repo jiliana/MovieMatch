@@ -274,7 +274,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="bTS-jh-GIX" kind="presentation" id="TZE-HN-yDV"/>
+                                    <segue destination="bTS-jh-GIX" kind="presentation" identifier="toRankingsSegue" id="TZE-HN-yDV"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTW-a0-Kx7">
@@ -421,16 +421,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="backMovieButton" destination="sVN-82-P0x" id="t6u-fe-M6N"/>
                         <outlet property="tableView" destination="Kmk-cN-mhs" id="qmk-ro-nTH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dS1-pk-Sey" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2239.130434782609" y="75"/>
+            <point key="canvasLocation" x="2903" y="75"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TZE-HN-yDV"/>
         <segue reference="GZq-eX-EER"/>
         <segue reference="qRe-Qq-2vd"/>
     </inferredMetricsTieBreakers>

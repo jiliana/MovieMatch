@@ -150,8 +150,13 @@ class MovieSwipeViewController: UIViewController {
             self.currTitle = self.movies[self.currIndex]["title"] as! String
             self.currImage = self.movies[self.currIndex]["poster_path"] as! String
             self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
+            self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
+        } else {
+            // segue to rankigns page with no back button
+            RankingsViewController.hiddenButton = true
+            self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
         }
-        self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
+        
     }
     
     func setCardView(title: String, image: String, synopsis: String) {

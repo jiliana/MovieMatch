@@ -11,7 +11,9 @@ class RankingsViewController: UIViewController, UITableViewDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backMovieButton: UIButton!
     var currIndex: Int = 0
+    static var hiddenButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,10 @@ class RankingsViewController: UIViewController, UITableViewDelegate{
         // Do any additional setup after loading the view.
         tableView.delegate = self
         //tableView.dataSource = self
+
+        if (RankingsViewController.hiddenButton == true){
+            backMovieButton.isHidden = true
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
