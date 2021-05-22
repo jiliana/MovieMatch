@@ -33,9 +33,12 @@ class WaitingRoomViewController: UIViewController {
     }
     
     @IBAction func onSwipeButton(_ sender: Any) {
-        let destination = MovieSwipeViewController(nibName: "MovieSwipeViewController", bundle: nil)
-        destination.code = code
         self.performSegue(withIdentifier: "movieSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! MovieSwipeViewController
+        destination.code = code
     }
 
     /*

@@ -125,8 +125,7 @@ class MovieSwipeViewController: UIViewController {
             if (maybeMovie != nil){
                 let movie = maybeMovie! as PFObject
                 
-                let yes = movie["yesVotes"] as! Int
-                movie["yesVotes"] = (yes + 1)
+                movie.incrementKey("yesVotes")
                 
                 movie.saveInBackground()
                 
@@ -147,59 +146,67 @@ class MovieSwipeViewController: UIViewController {
                     }
                 }
             }
-
+            
         } else if gesture.direction == .left {
             print("swipe left")
+    
+            // finds movie object with "title" = title + code
+            let movieQuery = PFQuery(className: "Movies")
+            movieQuery.whereKey("title", equalTo: currTitle + code)
             
-            let movieQuery = PFQuery(className: "Movies").whereKey("title", equalTo: currTitle)
-            
-            var maybeMovie: PFObject?
-            do {
-                try maybeMovie = movieQuery.getFirstObject()
-            } catch let error{
-                print(error)
-            }
-            
-            if (maybeMovie != nil){
-                let movie = maybeMovie! as PFObject
-                
-                let no = movie["noVotes"] as! Int
-                movie["noVotes"] = (no + 1)
-                
-                movie.saveInBackground()
-                
-            } else {
-                let movie = PFObject(className: "Movies")
-                movie["title"] = currTitle
-                movie["synopsis"] = currSynopsis
-                movie["imageUrl"] = currImage
-                movie["yesVotes"] = 0
-                movie["noVotes"] = 1
-                
-                movie.saveInBackground { (success, error) in
-                    if success {
-                        print("saved!")
-                        
-                    } else {
-                        print("error!")
+            movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                else if let objects = objects {
+                    // if movie object exists, noVotes += 1
+                    if let movie = try? movieQuery.getFirstObject() {
+                        movie.incrementKey("noVotes")
+                        movie.saveInBackground { (success, error) in
+                            if (success && movie["title"] as! String == self.currTitle + self.code) {
+                                print("added no vote to movie")
+                            }
+                            else {
+                                print("Error: \(error?.localizedDescription ?? "could not vote no")")
+                            }
+                        }
                     }
+                    
+                    // if movie object does not exist, make a new movie object
+                    if (objects.count == 0) {
+                        let movie = PFObject(className: "Movies")
+                        movie["title"] = self.currTitle + self.code
+                        movie["synopsis"] = self.currSynopsis
+                        movie["imageUrl"] = self.currImage
+                        movie["yesVotes"] = 0
+                        movie["noVotes"] = 1
+                        movie["room"] = self.code
+                        
+                        movie.saveInBackground { (success, error) in
+                            if (success) {
+                                print("movie object saved")
+                            }
+                            else {
+                                print("Error: \(error?.localizedDescription ?? "could not save movie object")")
+                            }
+                        }
+                    }       
+                }
+                
+                self.currIndex+=1;
+                
+                if self.currIndex < self.movies.count {
+                    self.currTitle = self.movies[self.currIndex]["title"] as! String
+                    self.currImage = self.movies[self.currIndex]["poster_path"] as! String
+                    self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
+                    self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
+                } else {
+                    // segue to rankings page with no back button
+                    RankingsViewController.hiddenButton = true
+                    self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
                 }
             }
         }
-        
-        self.currIndex+=1;
-        
-        if currIndex < movies.count {
-            self.currTitle = self.movies[self.currIndex]["title"] as! String
-            self.currImage = self.movies[self.currIndex]["poster_path"] as! String
-            self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
-            self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
-        } else {
-            // segue to rankings page with no back button
-            RankingsViewController.hiddenButton = true
-            self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
-        }
-        
     }
     
     func setCardView(title: String, image: String, synopsis: String) {
