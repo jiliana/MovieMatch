@@ -78,7 +78,7 @@ class MovieSwipeViewController: UIViewController {
             
             // finds movie object with "title" = title + code
             let movieQuery = PFQuery(className: "Movies")
-            movieQuery.whereKey("title", equalTo: currTitle + code)
+            movieQuery.whereKey("titlecode", equalTo: currTitle + code)
             
             movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
                 if let error = error {
@@ -101,7 +101,8 @@ class MovieSwipeViewController: UIViewController {
                     // if movie object does not exist, make a new movie object
                     if (objects.count == 0) {
                         let movie = PFObject(className: "Movies")
-                        movie["title"] = self.currTitle + self.code
+                        movie["title"] = self.currTitle
+                        movie["titlecode"] = self.currTitle + self.code
                         movie["synopsis"] = self.currSynopsis
                         movie["imageUrl"] = self.currImage
                         movie["yesVotes"] = 1
@@ -128,7 +129,7 @@ class MovieSwipeViewController: UIViewController {
     
             // finds movie object with "title" = title + code
             let movieQuery = PFQuery(className: "Movies")
-            movieQuery.whereKey("title", equalTo: currTitle + code)
+            movieQuery.whereKey("titlecode", equalTo: currTitle + code)
             
             movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
                 if let error = error {
@@ -151,7 +152,8 @@ class MovieSwipeViewController: UIViewController {
                     // if movie object does not exist, make a new movie object
                     if (objects.count == 0) {
                         let movie = PFObject(className: "Movies")
-                        movie["title"] = self.currTitle + self.code
+                        movie["title"] = self.currTitle
+                        movie["titlecode"] = self.currTitle + self.code
                         movie["synopsis"] = self.currSynopsis
                         movie["imageUrl"] = self.currImage
                         movie["yesVotes"] = 0
