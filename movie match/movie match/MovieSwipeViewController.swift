@@ -30,10 +30,6 @@ class MovieSwipeViewController: UIViewController {
     // array of dictionaries
     var movies = [[String:Any]]()
     
-    var movieTitleArr = [String]()
-    var movieImageArr = [String]()
-    var movieSynopsisArr = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         codeLabel.text = "Code: \(code)"
@@ -62,14 +58,6 @@ class MovieSwipeViewController: UIViewController {
 
                 self.movies = dataDictionary["results"] as! [[String:Any]]
                 
-                /*
-                self.initializeMovieTitle()
-                self.initializeMovieImage()
-                self.initializeMovieSynopsis()
-                */
-                
-                //print(dataDictionary)
-                
                 // set first sliding entry
                 self.currTitle = self.movies[self.currIndex]["title"] as! String
                 self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
@@ -83,31 +71,6 @@ class MovieSwipeViewController: UIViewController {
         
     }
     
-    // initialize movie title
-    func initializeMovieTitle() {
-        var movie = movies[0]
-        for item in movies {
-            movie = item
-            movieTitleArr.append(movie["title"] as! String)
-        }
-    }
-    // initialize movie image
-    func initializeMovieImage() {
-        var movie = movies[0]
-        for item in movies {
-            movie = item
-            movieImageArr.append(movie["poster_path"] as! String)
-        }
-    }
-    // initialize movie synopsis
-    func initializeMovieSynopsis() {
-        var movie = movies[0]
-        for item in movies {
-            movie = item
-            movieSynopsisArr.append(movie["overview"] as! String)
-        }
-        
-    }
     
     @objc func swipeGesture(gesture: UISwipeGestureRecognizer){
         if gesture.direction == .right {
