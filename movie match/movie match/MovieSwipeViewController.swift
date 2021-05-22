@@ -113,34 +113,76 @@ class MovieSwipeViewController: UIViewController {
         if gesture.direction == .right {
             print("swipe right")
             
-            let movie = PFObject(className: "Movies")
-            movie["title"] = currTitle
-            movie["synopsis"] = currImage
-            movie["imageUrl"] = currImage
+            let movieQuery = PFQuery(className: "Movies").whereKey("title", equalTo: currTitle)
+
+            var maybeMovie: PFObject?
+            do {
+                try maybeMovie = movieQuery.getFirstObject()
+            } catch let error{
+                print(error)
+            }
             
-            movie.saveInBackground { (success, error) in
-                if success {
-                    print("saved!")
-                    
-                } else {
-                    print("error!")
+            if (maybeMovie != nil){
+                let movie = maybeMovie! as PFObject
+                
+                let yes = movie["yesVotes"] as! Int
+                movie["yesVotes"] = (yes + 1)
+                
+                movie.saveInBackground()
+                
+            } else {
+                let movie = PFObject(className: "Movies")
+                movie["title"] = currTitle
+                movie["synopsis"] = currSynopsis
+                movie["imageUrl"] = currImage
+                movie["yesVotes"] = 1
+                movie["noVotes"] = 0
+                
+                movie.saveInBackground { (success, error) in
+                    if success {
+                        print("saved!")
+                        
+                    } else {
+                        print("error!")
+                    }
                 }
             }
 
         } else if gesture.direction == .left {
             print("swipe left")
             
-            let movie = PFObject(className: "Movies")
-            movie["title"] = currTitle
-            movie["synopsis"] = currImage
-            movie["imageUrl"] = currImage
+            let movieQuery = PFQuery(className: "Movies").whereKey("title", equalTo: currTitle)
             
-            movie.saveInBackground { (success, error) in
-                if success {
-                    print("saved!")
-                    
-                } else {
-                    print("error!")
+            var maybeMovie: PFObject?
+            do {
+                try maybeMovie = movieQuery.getFirstObject()
+            } catch let error{
+                print(error)
+            }
+            
+            if (maybeMovie != nil){
+                let movie = maybeMovie! as PFObject
+                
+                let no = movie["noVotes"] as! Int
+                movie["noVotes"] = (no + 1)
+                
+                movie.saveInBackground()
+                
+            } else {
+                let movie = PFObject(className: "Movies")
+                movie["title"] = currTitle
+                movie["synopsis"] = currSynopsis
+                movie["imageUrl"] = currImage
+                movie["yesVotes"] = 0
+                movie["noVotes"] = 1
+                
+                movie.saveInBackground { (success, error) in
+                    if success {
+                        print("saved!")
+                        
+                    } else {
+                        print("error!")
+                    }
                 }
             }
         }
@@ -153,7 +195,7 @@ class MovieSwipeViewController: UIViewController {
             self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
             self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
         } else {
-            // segue to rankigns page with no back button
+            // segue to rankings page with no back button
             RankingsViewController.hiddenButton = true
             self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
         }
