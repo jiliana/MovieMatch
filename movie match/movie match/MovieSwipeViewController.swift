@@ -18,8 +18,9 @@ class MovieSwipeViewController: UIViewController {
     
     
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var synopsisLabel: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var synopsisLabel: UITextView!
+    
     
     var currTitle: String = ""
     var currImage: String = ""
