@@ -130,3 +130,9 @@ Code Generation + Navigation
 Page Layout
 
 <img src="https://i.imgur.com/rP1UsEK.png" width=600>
+
+### Sprint 2
+**Milestones: Movie Options**
+Movie List + Swiping Feature
+
+![](https://i.imgur.com/rilmi6y.gif)
