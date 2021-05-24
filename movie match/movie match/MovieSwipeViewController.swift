@@ -32,7 +32,18 @@ class MovieSwipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //card view design
+        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.cornerRadius = 20
+        cardView.layer.shadowOpacity = 0.2
+        cardView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        cardView.layer.shadowRadius = 10
+        
+        //label customization
         codeLabel.text = "Code: \(code)"
+        
+        //button design
         rankingsButton.layer.cornerRadius = 5
         
         cardView.isUserInteractionEnabled = true
