@@ -133,6 +133,7 @@ Page Layout
 
 ### Sprint 2
 **Milestones: Movie Options**
+
 Movie List + Swiping Feature
 
 ![](https://i.imgur.com/rilmi6y.gif)
