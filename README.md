@@ -133,7 +133,9 @@ Page Layout
 <img src="https://i.imgur.com/rP1UsEK.png" width=600>
 
 ### Sprint 2
-**Milestones: Movie Options**
+**Milestones: swiping**
+![](http://g.recordit.co/X5lTrz1w64.gif)
+
 
 Movie List + Swiping Feature
 
