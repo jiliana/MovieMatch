@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import Parse
+import AlamofireImage
 
 class RankingsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var posterView: UIImageView!
-    @IBOutlet weak var synopsisLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yesLabel: UILabel!
     @IBOutlet weak var noLabel: UILabel!
+    @IBOutlet weak var synopsisLabel: UITextView!
     
     
     override func awakeFromNib() {

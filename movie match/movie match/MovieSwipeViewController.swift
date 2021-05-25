@@ -48,14 +48,6 @@ class MovieSwipeViewController: UIViewController {
         
         cardView.isUserInteractionEnabled = true
         
-       /* let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture(gesture:)))
-        swipeRight.direction = .right
-        cardView.addGestureRecognizer(swipeRight)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture(gesture:)))
-        swipeRight.direction = .left
-        cardView.addGestureRecognizer(swipeLeft)
-        */
         // network request
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -127,6 +119,7 @@ class MovieSwipeViewController: UIViewController {
                             movie["yesVotes"] = 1
                             movie["noVotes"] = 0
                             movie["room"] = self.code
+                            movie["score"] = 1
                             
                             movie.saveInBackground { (success, error) in
                                 if (success) {
@@ -179,6 +172,7 @@ class MovieSwipeViewController: UIViewController {
                             movie["yesVotes"] = 0
                             movie["noVotes"] = 1
                             movie["room"] = self.code
+                            movie["score"] = -1
                             
                             movie.saveInBackground { (success, error) in
                                 if (success) {
@@ -201,112 +195,7 @@ class MovieSwipeViewController: UIViewController {
         }
 
     }
-    /*
-    @objc func swipeGesture(gesture: UISwipeGestureRecognizer){
-        if gesture.direction == .right {
-            print("swipe right")
-            
-            // finds movie object with "title" = title + code
-            let movieQuery = PFQuery(className: "Movies")
-            movieQuery.whereKey("titlecode", equalTo: currTitle + code)
-            
-            movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                else if let objects = objects {
-                    // if movie object exists, yesVotes += 1
-                    if let movie = try? movieQuery.getFirstObject() {
-                        movie.incrementKey("yesVotes")
-                        movie.saveInBackground { (success, error) in
-                            if (success) {
-                                print("added yes vote to movie")
-                            }
-                            else {
-                                print("Error: \(error?.localizedDescription ?? "could not vote yes")")
-                            }
-                        }
-                    }
-                    
-                    // if movie object does not exist, make a new movie object
-                    if (objects.count == 0) {
-                        let movie = PFObject(className: "Movies")
-                        movie["title"] = self.currTitle
-                        movie["titlecode"] = self.currTitle + self.code
-                        movie["synopsis"] = self.currSynopsis
-                        movie["imageUrl"] = self.currImage
-                        movie["yesVotes"] = 1
-                        movie["noVotes"] = 0
-                        movie["room"] = self.code
-                        
-                        movie.saveInBackground { (success, error) in
-                            if (success) {
-                                print("movie object saved")
-                            }
-                            else {
-                                print("Error: \(error?.localizedDescription ?? "could not save movie object")")
-                            }
-                        }
-                    }
-                    
-                }
-                self.afterSwipe()
 
-            }
-            
-        } else if gesture.direction == .left {
-            print("swipe left")
-    
-            // finds movie object with "title" = title + code
-            let movieQuery = PFQuery(className: "Movies")
-            movieQuery.whereKey("titlecode", equalTo: currTitle + code)
-            
-            movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                else if let objects = objects {
-                    // if movie object exists, noVotes += 1
-                    if let movie = try? movieQuery.getFirstObject() {
-                        movie.incrementKey("noVotes")
-                        movie.saveInBackground { (success, error) in
-                            if (success) {
-                                print("added no vote to movie")
-                            }
-                            else {
-                                print("Error: \(error?.localizedDescription ?? "could not vote no")")
-                            }
-                        }
-                    }
-                    
-                    // if movie object does not exist, make a new movie object
-                    if (objects.count == 0) {
-                        let movie = PFObject(className: "Movies")
-                        movie["title"] = self.currTitle
-                        movie["titlecode"] = self.currTitle + self.code
-                        movie["synopsis"] = self.currSynopsis
-                        movie["imageUrl"] = self.currImage
-                        movie["yesVotes"] = 0
-                        movie["noVotes"] = 1
-                        movie["room"] = self.code
-                        
-                        movie.saveInBackground { (success, error) in
-                            if (success) {
-                                print("movie object saved")
-                            }
-                            else {
-                                print("Error: \(error?.localizedDescription ?? "could not save movie object")")
-                            }
-                        }
-                    }       
-                }
-                self.afterSwipe()
-
-            }
-
-        }
-    }
-    */
     func afterSwipe() {
         self.currIndex+=1;
         
@@ -337,6 +226,7 @@ class MovieSwipeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let RankingsViewController = segue.destination as! RankingsViewController
         RankingsViewController.currIndex = self.currIndex
+        RankingsViewController.code = code
     }
     
     /*
