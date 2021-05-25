@@ -30,6 +30,7 @@ Helps find a movie to watch in a group setting. Everyone within the same group w
 - [x] List of movies
 - [x] User can swipe movies right or left based on their preference
 - [x] Generate code and code login (kahoot style)
+- [x] Swiping has animations
 - [ ] Rankings of the group's favorite movies
 
 **Optional Nice-to-have Stories**
