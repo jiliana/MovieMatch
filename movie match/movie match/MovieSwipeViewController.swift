@@ -80,7 +80,9 @@ class MovieSwipeViewController: UIViewController {
         let point = sender.translation(in: view)
         let xFromCenter = card.center.x - view.center.x
         card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-        card.transform = CGAffineTransform(rotationAngle: xFromCenter/view.frame.width/1.5)
+        
+        let scale = min(150/abs(xFromCenter),1)
+        card.transform = CGAffineTransform(rotationAngle: xFromCenter/view.frame.width/1.5).scaledBy(x: scale, y: scale)
         
         if xFromCenter > 0 {
             thumbImage.image = UIImage(systemName: "hand.thumbsup.fill")
@@ -94,24 +96,16 @@ class MovieSwipeViewController: UIViewController {
         thumbImage.alpha = abs(xFromCenter) / view.center.x
         
         if sender.state == UIGestureRecognizer.State.ended {
+            self.cardView.alpha = 0
             if (xFromCenter > 0) {
                 swipedCard(dir: 1)
             }
             else {
                 swipedCard(dir: -1)
             }
-            resetCard()
         }
     }
-    
-    func resetCard() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.cardView.center = self.view.center
-            self.thumbImage.alpha = 0
-            self.cardView.transform = CGAffineTransform.identity
-        })
-    }
-    
+
     func swipedCard(dir: Int) {
         
         if (dir > 0){
@@ -234,6 +228,13 @@ class MovieSwipeViewController: UIViewController {
             RankingsViewController.hiddenButton = true
             self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
         }
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.cardView.center = self.view.center
+            self.thumbImage.alpha = 0
+            self.cardView.transform = CGAffineTransform.identity
+        })
+        self.cardView.alpha = 1
     }
     
     func setCardView(title: String, image: String, synopsis: String) {
