@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -427,6 +427,11 @@
                                             <constraint firstAttribute="width" secondItem="L25-ZT-Vks" secondAttribute="height" multiplier="67:93" id="RhL-lo-C1J"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" image="hand.thumbsup.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GmE-WP-89N">
+                                        <rect key="frame" x="87" y="214.5" width="200" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -473,12 +478,13 @@
                         <outlet property="movieTitleLabel" destination="ZAZ-Lr-JbA" id="IqV-Vo-Yws"/>
                         <outlet property="rankingsButton" destination="Eg6-tS-hW9" id="IwJ-tG-Vaz"/>
                         <outlet property="synopsisLabel" destination="bdu-Ix-Qbi" id="QU3-4E-ITV"/>
+                        <outlet property="thumbImage" destination="GmE-WP-89N" id="tV1-B4-sZ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mnt-gw-HPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="yVW-zo-51s">
                     <connections>
-                        <action selector="swipeCard:" destination="Ke6-PY-cVe" id="8FN-Al-Xje"/>
+                        <action selector="swipeCardAnimation:" destination="Ke6-PY-cVe" id="VqZ-Q5-tcb"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
@@ -503,7 +509,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RankingsTableViewCell" rowHeight="242" id="K3t-ZU-aBv" customClass="RankingsTableViewCell" customModule="movie_match" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="242"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="242"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K3t-ZU-aBv" id="yBu-Nj-4dc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="242"/>
@@ -634,13 +640,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GZq-eX-EER"/>
+        <segue reference="DsJ-2a-CK2"/>
         <segue reference="pqx-VK-gV1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
         <image name="hand.thumbsdown" catalog="system" width="128" height="128"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
