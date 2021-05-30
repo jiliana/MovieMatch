@@ -28,6 +28,9 @@ class MovieSwipeViewController: UIViewController {
     var currSynopsis: String = ""
     var currIndex: Int = 0
     
+    var numYesVotes: Int = 0
+    var numUsers: Int = 0
+    
     // array of dictionaries
     var movies = [[String:Any]]()
     
@@ -104,6 +107,8 @@ class MovieSwipeViewController: UIViewController {
                 swipedCard(dir: -1)
             }
         }
+        
+        
     }
 
     func swipedCard(dir: Int) {
@@ -131,6 +136,7 @@ class MovieSwipeViewController: UIViewController {
                                 print("Error: \(error?.localizedDescription ?? "could not vote yes")")
                             }
                         }
+                        self.numYesVotes += 1
                     }
                     
                     // if movie object does not exist, make a new movie object
@@ -144,6 +150,7 @@ class MovieSwipeViewController: UIViewController {
                         movie["noVotes"] = 0
                         movie["room"] = self.code
                         movie["score"] = 1
+                        self.numYesVotes = 1
                         
                         movie.saveInBackground { (success, error) in
                             if (success) {
@@ -216,6 +223,17 @@ class MovieSwipeViewController: UIViewController {
     }
     
     func afterSwipe() {
+        // when all users in room agreed on a movie
+        if (numYesVotes == numUsers){
+            print("equal yes and users")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "congratulationsViewController") as! CongratulationsViewController
+            //self.navigationController?.pushViewController(vc, animated: true)
+            vc.firstMovieTitle = self.currTitle
+            vc.firstSynopsis = self.currSynopsis
+            vc.firstImage = self.currImage
+            self.present(vc, animated: true, completion: nil)
+        }
+        
         self.currIndex+=1;
         
         if self.currIndex < self.movies.count {

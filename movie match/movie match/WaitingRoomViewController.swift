@@ -39,6 +39,7 @@ class WaitingRoomViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! MovieSwipeViewController
         destination.code = code
+        destination.numUsers = currentUsers
     }
 
     /*

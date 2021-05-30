@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -169,7 +169,7 @@
         <!--Congratulations View Controller-->
         <scene sceneID="Zvv-4a-i6X">
             <objects>
-                <viewController id="Gmj-Pe-Ydm" customClass="CongratulationsViewController" customModule="movie_match" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="congratulationsViewController" modalPresentationStyle="fullScreen" id="Gmj-Pe-Ydm" customClass="CongratulationsViewController" customModule="movie_match" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q7l-n9-jMx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -265,6 +265,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="firstMovieImage" destination="osO-yQ-aoj" id="XJR-h2-mOv"/>
+                        <outlet property="firstMovieTitleLabel" destination="Vam-0G-zcK" id="GQw-cz-xNJ"/>
+                        <outlet property="firstSynopsisLabel" destination="coK-zn-FOS" id="qyH-j1-f9v"/>
                         <outlet property="homeButton" destination="GlU-Ly-D09" id="baQ-tv-loE"/>
                     </connections>
                 </viewController>
@@ -640,8 +643,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DsJ-2a-CK2"/>
-        <segue reference="pqx-VK-gV1"/>
+        <segue reference="GZq-eX-EER"/>
+        <segue reference="qRe-Qq-2vd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
