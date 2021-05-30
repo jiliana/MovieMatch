@@ -34,6 +34,7 @@ class WaitingRoomViewController: UIViewController {
     }
     
     @IBAction func onSwipeButton(_ sender: Any) {
+        reload()
         if (String(currentUsers) == maxUsers) {
             self.performSegue(withIdentifier: "movieSegue", sender: nil)
         }
@@ -50,11 +51,6 @@ class WaitingRoomViewController: UIViewController {
     }
     
     func reload(){
-        peopleEnteredLabel.text = "\(currentUsers) out of \(maxUsers) entered"
-    }
-    
-    
-    @IBAction func onRefreshButoon(_ sender: Any) {
         let query = PFQuery(className: "Room")
         query.whereKey("code", equalTo: code)
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
@@ -72,6 +68,12 @@ class WaitingRoomViewController: UIViewController {
                 }
             }
         }
+        peopleEnteredLabel.text = "\(currentUsers) out of \(maxUsers) entered"
+    }
+    
+    
+    @IBAction func onRefreshButoon(_ sender: Any) {
+        reload()
     }
     
     /*
