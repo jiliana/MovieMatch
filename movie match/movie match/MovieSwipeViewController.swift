@@ -136,7 +136,7 @@ class MovieSwipeViewController: UIViewController {
                                 print("Error: \(error?.localizedDescription ?? "could not vote yes")")
                             }
                         }
-                        self.numYesVotes += 1
+                        self.numYesVotes = movie["yesVotes"] as! Int
                     }
                     
                     // if movie object does not exist, make a new movie object
@@ -150,7 +150,7 @@ class MovieSwipeViewController: UIViewController {
                         movie["noVotes"] = 0
                         movie["room"] = self.code
                         movie["score"] = 1
-                        self.numYesVotes = 1
+                        self.numYesVotes = movie["yesVotes"] as! Int
                         
                         movie.saveInBackground { (success, error) in
                             if (success) {
