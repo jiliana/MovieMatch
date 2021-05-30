@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -296,7 +295,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onSwipeButton:" destination="YCr-Vj-acE" eventType="touchUpInside" id="0Bj-Hd-b2O"/>
-                                    <segue destination="Ke6-PY-cVe" kind="presentation" identifier="movieSegue" animates="NO" id="DsJ-2a-CK2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting Room..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tav-rk-L2X">
@@ -373,6 +371,7 @@
                         <outlet property="codeisLabel" destination="cae-P8-s6D" id="E3o-Jo-iok"/>
                         <outlet property="peopleEnteredLabel" destination="n0z-cc-9HI" id="Cxg-Sf-fr3"/>
                         <outlet property="swippingButton" destination="dgu-45-dNS" id="3dZ-65-689"/>
+                        <segue destination="Ke6-PY-cVe" kind="presentation" identifier="movieSegue" id="MqP-RO-Y1T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3w7-Y7-gFt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -398,12 +397,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code: ABC123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLx-XG-xBk">
-                                <rect key="frame" x="20" y="49" width="374" height="46"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eg6-tS-hW9">
                                 <rect key="frame" x="20" y="810" width="374" height="47"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -419,10 +412,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTW-a0-Kx7">
-                                <rect key="frame" x="20" y="103" width="374" height="650"/>
+                                <rect key="frame" x="20" y="113" width="374" height="630"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAZ-Lr-JbA">
-                                        <rect key="frame" x="20" y="10" width="334" height="65"/>
+                                        <rect key="frame" x="20" y="0.0" width="334" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="bWw-uX-1SA"/>
                                         </constraints>
@@ -431,7 +424,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bdu-Ix-Qbi">
-                                        <rect key="frame" x="20" y="555" width="334" height="79"/>
+                                        <rect key="frame" x="20" y="545" width="334" height="69"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -439,7 +432,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L25-ZT-Vks">
-                                        <rect key="frame" x="20" y="83" width="334" height="464"/>
+                                        <rect key="frame" x="20" y="73" width="334" height="464"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="L25-ZT-Vks" secondAttribute="height" multiplier="67:93" id="RhL-lo-C1J"/>
@@ -459,7 +452,7 @@
                                     <constraint firstItem="L25-ZT-Vks" firstAttribute="leading" secondItem="hTW-a0-Kx7" secondAttribute="leading" constant="20" id="GVg-ds-fCh"/>
                                     <constraint firstItem="bdu-Ix-Qbi" firstAttribute="leading" secondItem="hTW-a0-Kx7" secondAttribute="leading" constant="20" id="I8y-2p-mBe"/>
                                     <constraint firstItem="bdu-Ix-Qbi" firstAttribute="top" secondItem="L25-ZT-Vks" secondAttribute="bottom" constant="8" id="L2d-AZ-M7W"/>
-                                    <constraint firstItem="ZAZ-Lr-JbA" firstAttribute="top" secondItem="hTW-a0-Kx7" secondAttribute="top" constant="10" id="h1b-2V-Rwi"/>
+                                    <constraint firstItem="ZAZ-Lr-JbA" firstAttribute="top" secondItem="hTW-a0-Kx7" secondAttribute="top" id="h1b-2V-Rwi"/>
                                     <constraint firstItem="L25-ZT-Vks" firstAttribute="centerY" secondItem="hTW-a0-Kx7" secondAttribute="centerY" constant="-10" id="h5U-GB-pXH"/>
                                     <constraint firstItem="L25-ZT-Vks" firstAttribute="centerX" secondItem="hTW-a0-Kx7" secondAttribute="centerX" id="hbg-cA-yTQ"/>
                                     <constraint firstAttribute="trailing" secondItem="bdu-Ix-Qbi" secondAttribute="trailing" constant="20" id="lT5-3h-ROO"/>
@@ -472,6 +465,12 @@
                                     <outletCollection property="gestureRecognizers" destination="yVW-zo-51s" appends="YES" id="9ji-2A-Ftz"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code: ABC123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLx-XG-xBk">
+                                <rect key="frame" x="20" y="83" width="374" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nS9-cY-SuS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -481,7 +480,7 @@
                             <constraint firstItem="nS9-cY-SuS" firstAttribute="bottom" secondItem="Eg6-tS-hW9" secondAttribute="bottom" constant="5" id="Z2o-HC-JlR"/>
                             <constraint firstItem="nS9-cY-SuS" firstAttribute="trailing" secondItem="Eg6-tS-hW9" secondAttribute="trailing" constant="20" id="aY3-8h-oi9"/>
                             <constraint firstItem="dLx-XG-xBk" firstAttribute="leading" secondItem="nS9-cY-SuS" secondAttribute="leading" constant="20" id="bCd-WL-KDy"/>
-                            <constraint firstItem="dLx-XG-xBk" firstAttribute="top" relation="lessThanOrEqual" secondItem="nS9-cY-SuS" secondAttribute="top" constant="5" id="jac-IN-lgu"/>
+                            <constraint firstItem="dLx-XG-xBk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nS9-cY-SuS" secondAttribute="top" id="jac-IN-lgu"/>
                             <constraint firstItem="nS9-cY-SuS" firstAttribute="trailing" secondItem="hTW-a0-Kx7" secondAttribute="trailing" constant="20" id="lM3-c4-aaT"/>
                             <constraint firstItem="hTW-a0-Kx7" firstAttribute="centerY" secondItem="oTn-ms-Qyx" secondAttribute="centerY" constant="-20" id="puU-SH-9GW"/>
                             <constraint firstItem="hTW-a0-Kx7" firstAttribute="leading" secondItem="nS9-cY-SuS" secondAttribute="leading" constant="20" id="qaL-Fv-n5b"/>
@@ -506,7 +505,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1478.2608695652175" y="75"/>
+            <point key="canvasLocation" x="1477.5999999999999" y="74.212893553223395"/>
         </scene>
         <!--Rankings View Controller-->
         <scene sceneID="sKR-76-72p">
@@ -658,8 +657,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DsJ-2a-CK2"/>
-        <segue reference="qRe-Qq-2vd"/>
+        <segue reference="MqP-RO-Y1T"/>
+        <segue reference="pqx-VK-gV1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>

@@ -34,7 +34,12 @@ class WaitingRoomViewController: UIViewController {
     }
     
     @IBAction func onSwipeButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "movieSegue", sender: nil)
+        if (String(currentUsers) == maxUsers) {
+            self.performSegue(withIdentifier: "movieSegue", sender: nil)
+        }
+        else {
+            print ("not all users in room")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
