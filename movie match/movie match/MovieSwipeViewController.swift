@@ -267,9 +267,9 @@ class MovieSwipeViewController: UIViewController {
                 if let movie = try? movieQuery.getFirstObject() {
                     print("equal yes and users")
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "congratulationsViewController") as! CongratulationsViewController
-                    vc.firstMovieTitle = self.currTitle
-                    vc.firstSynopsis = self.currSynopsis
-                    vc.firstImage = self.currImage
+                    vc.firstMovieTitle = movie["title"] as! String
+                    vc.firstSynopsis = movie["synopsis"] as! String
+                    vc.firstImage = movie["imageUrl"] as! String
                     self.present(vc, animated: true, completion: nil)
                 }
                 // yes votes not hit
