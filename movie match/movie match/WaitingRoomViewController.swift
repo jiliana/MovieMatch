@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class WaitingRoomViewController: UIViewController {
 
@@ -37,11 +38,37 @@ class WaitingRoomViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "movieSegue" else {return}
         let destination = segue.destination as! MovieSwipeViewController
         destination.code = code
         destination.numUsers = currentUsers
     }
-
+    
+    func reload(){
+        peopleEnteredLabel.text = "\(currentUsers) out of \(maxUsers) entered"
+    }
+    
+    
+    @IBAction func onRefreshButoon(_ sender: Any) {
+        let query = PFQuery(className: "Room")
+        query.whereKey("code", equalTo: code)
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                // Log details of the failure
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                //creates room object based on object found by query
+                if let room = try? query.getFirstObject() {
+                    // updates currentUsers and total users
+                    let currUsers = room["currentUsers"] as! Int
+                    self.currentUsers = currUsers
+                   // self.peopleEnteredLabel.text = "\(self.currentUsers) out of \(self.maxUsers) entered"
+                    self.reload();
+                }
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -17,6 +17,7 @@ class RankingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var backMovieButton: UIButton!
     
     var currIndex: Int = 0
+    var numUsers: Int = 0
     var code: String = ""
     static var hiddenButton = false
     var movieObjects = [PFObject]()
@@ -126,6 +127,7 @@ class RankingsViewController: UIViewController, UITableViewDelegate, UITableView
         let MovieSwipeViewController = segue.destination as! MovieSwipeViewController
         MovieSwipeViewController.currIndex = self.currIndex
         MovieSwipeViewController.code = code
+        MovieSwipeViewController.numUsers = numUsers
     }
     /*
     // MARK: - Navigation

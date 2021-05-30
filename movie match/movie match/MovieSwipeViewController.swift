@@ -28,7 +28,7 @@ class MovieSwipeViewController: UIViewController {
     var currSynopsis: String = ""
     var currIndex: Int = 0
     
-    var numYesVotes: Int = 0
+    //var numYesVotes: Int = 0
     var numUsers: Int = 0
     
     // array of dictionaries
@@ -128,6 +128,10 @@ class MovieSwipeViewController: UIViewController {
                     // if movie object exists, yesVotes += 1
                     if let movie = try? movieQuery.getFirstObject() {
                         movie.incrementKey("yesVotes")
+                        
+                        let yesVotesNum = movie["yesVotes"] as! Int
+                        movie["yesVotesCode"] = String(yesVotesNum) + self.code
+                        
                         movie.saveInBackground { (success, error) in
                             if (success) {
                                 print("added yes vote to movie")
@@ -136,7 +140,7 @@ class MovieSwipeViewController: UIViewController {
                                 print("Error: \(error?.localizedDescription ?? "could not vote yes")")
                             }
                         }
-                        self.numYesVotes = movie["yesVotes"] as! Int
+                        //self.numYesVotes = movie["yesVotes"] as! Int
                     }
                     
                     // if movie object does not exist, make a new movie object
@@ -150,7 +154,10 @@ class MovieSwipeViewController: UIViewController {
                         movie["noVotes"] = 0
                         movie["room"] = self.code
                         movie["score"] = 1
-                        self.numYesVotes = movie["yesVotes"] as! Int
+                        
+                        let yesVotesNum = movie["yesVotes"] as! Int
+                        movie["yesVotesCode"] = String(yesVotesNum) + self.code
+                        //self.numYesVotes = movie["yesVotes"] as! Int
                         
                         movie.saveInBackground { (success, error) in
                             if (success) {
@@ -183,6 +190,10 @@ class MovieSwipeViewController: UIViewController {
                     // if movie object exists, noVotes += 1
                     if let movie = try? movieQuery.getFirstObject() {
                         movie.incrementKey("noVotes")
+                        
+                        let yesVotesNum = movie["yesVotes"] as! Int
+                        movie["yesVotesCode"] = String(yesVotesNum) + self.code
+                        
                         movie.saveInBackground { (success, error) in
                             if (success) {
                                 print("added no vote to movie")
@@ -205,6 +216,9 @@ class MovieSwipeViewController: UIViewController {
                         movie["room"] = self.code
                         movie["score"] = -1
                         
+                        let yesVotesNum = movie["yesVotes"] as! Int
+                        movie["yesVotesCode"] = String(yesVotesNum) + self.code
+                        
                         movie.saveInBackground { (success, error) in
                             if (success) {
                                 print("movie object saved")
@@ -222,39 +236,6 @@ class MovieSwipeViewController: UIViewController {
         
     }
     
-    func afterSwipe() {
-        // when all users in room agreed on a movie
-        if (numYesVotes == numUsers){
-            print("equal yes and users")
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "congratulationsViewController") as! CongratulationsViewController
-            //self.navigationController?.pushViewController(vc, animated: true)
-            vc.firstMovieTitle = self.currTitle
-            vc.firstSynopsis = self.currSynopsis
-            vc.firstImage = self.currImage
-            self.present(vc, animated: true, completion: nil)
-        }
-        
-        self.currIndex+=1;
-        
-        if self.currIndex < self.movies.count {
-            self.currTitle = self.movies[self.currIndex]["title"] as! String
-            self.currImage = self.movies[self.currIndex]["poster_path"] as! String
-            self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
-            self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
-        } else {
-            // segue to rankings page with no back button
-            RankingsViewController.hiddenButton = true
-            self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
-        }
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.cardView.center = self.view.center
-            self.thumbImage.alpha = 0
-            self.cardView.transform = CGAffineTransform.identity
-        })
-        self.cardView.alpha = 1
-    }
-    
     func setCardView(title: String, image: String, synopsis: String) {
         movieTitleLabel.text = title
         synopsisLabel.text = synopsis
@@ -266,12 +247,56 @@ class MovieSwipeViewController: UIViewController {
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let RankingsViewController = segue.destination as! RankingsViewController
         RankingsViewController.currIndex = self.currIndex
         RankingsViewController.code = code
+        RankingsViewController.numUsers = self.numUsers
     }
+    
+    func afterSwipe() {
+        
+        let movieQuery = PFQuery(className: "Movies")
+        movieQuery.whereKey("yesVotesCode", equalTo: String(self.numUsers) + code)
+        
+        movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                // if yes votes = number users
+                if let movie = try? movieQuery.getFirstObject() {
+                    print("equal yes and users")
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "congratulationsViewController") as! CongratulationsViewController
+                    vc.firstMovieTitle = self.currTitle
+                    vc.firstSynopsis = self.currSynopsis
+                    vc.firstImage = self.currImage
+                    self.present(vc, animated: true, completion: nil)
+                }
+                // yes votes not hit
+                if (objects.count == 0) {
+                    print("not enough yes")
+                    print(self.numUsers)
+                    self.currIndex+=1;
+                    
+                    if self.currIndex < self.movies.count {
+                        self.currTitle = self.movies[self.currIndex]["title"] as! String
+                        self.currImage = self.movies[self.currIndex]["poster_path"] as! String
+                        self.currSynopsis = self.movies[self.currIndex]["overview"] as! String
+                        self.setCardView(title: self.currTitle, image: self.currImage, synopsis: self.currSynopsis)
+                    } else {
+                        // segue to rankings page with no back button
+                        RankingsViewController.hiddenButton = true
+                        self.performSegue(withIdentifier: "toRankingsSegue", sender: nil)
+                    }
+                    
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.cardView.center = self.view.center
+                        self.thumbImage.alpha = 0
+                        self.cardView.transform = CGAffineTransform.identity
+                    })
+                    self.cardView.alpha = 1
+                }
+            }
     
     /*
      // MARK: - Navigation
@@ -283,4 +308,6 @@ class MovieSwipeViewController: UIViewController {
      }
      */
     
+}
+}
 }

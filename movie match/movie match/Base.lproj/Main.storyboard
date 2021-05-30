@@ -335,14 +335,28 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" identifier="codeHomeSegue" animates="NO" id="pqx-VK-gV1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHb-Vc-I1n">
+                                <rect key="frame" x="369" y="44" width="25" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="SGk-E9-Lx5"/>
+                                    <constraint firstAttribute="height" constant="22" id="TVm-At-M4E"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="onRefreshButoon:" destination="YCr-Vj-acE" eventType="touchUpInside" id="7ig-ho-uau"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h94-sz-ETk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="h94-sz-ETk" firstAttribute="trailing" secondItem="uHb-Vc-I1n" secondAttribute="trailing" constant="20" id="0aY-QC-V8H"/>
                             <constraint firstItem="dgu-45-dNS" firstAttribute="top" secondItem="n0z-cc-9HI" secondAttribute="bottom" constant="59" id="6hf-p4-A4s"/>
                             <constraint firstItem="h94-sz-ETk" firstAttribute="trailing" secondItem="n0z-cc-9HI" secondAttribute="trailing" constant="20" id="CCt-9Y-CGk"/>
                             <constraint firstItem="cae-P8-s6D" firstAttribute="top" secondItem="tav-rk-L2X" secondAttribute="bottom" constant="21" id="GRQ-1w-4yJ"/>
                             <constraint firstItem="dgu-45-dNS" firstAttribute="leading" secondItem="h94-sz-ETk" secondAttribute="leading" constant="20" id="TN3-sC-oYw"/>
+                            <constraint firstItem="uHb-Vc-I1n" firstAttribute="top" secondItem="h94-sz-ETk" secondAttribute="top" id="XY1-sO-xO7"/>
                             <constraint firstItem="tav-rk-L2X" firstAttribute="leading" secondItem="h94-sz-ETk" secondAttribute="leading" constant="20" id="Xik-TF-jTR"/>
                             <constraint firstItem="cae-P8-s6D" firstAttribute="leading" secondItem="h94-sz-ETk" secondAttribute="leading" constant="20" id="d8G-IJ-7wL"/>
                             <constraint firstItem="n0z-cc-9HI" firstAttribute="leading" secondItem="h94-sz-ETk" secondAttribute="leading" constant="20" id="dP0-kV-GMp"/>
@@ -374,7 +388,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="774" y="75"/>
+            <point key="canvasLocation" x="773.91304347826087" y="75"/>
         </scene>
         <!--Movie Swipe View Controller-->
         <scene sceneID="VES-6y-VEr">
@@ -648,6 +662,7 @@
         <segue reference="pqx-VK-gV1"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
         <image name="hand.thumbsdown" catalog="system" width="128" height="128"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
