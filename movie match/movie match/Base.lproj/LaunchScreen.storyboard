@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,18 +13,50 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="puzzle_piece" translatesAutoresizingMaskIntoConstraints="NO" id="DSN-Fs-71I">
+                                <rect key="frame" x="69" y="230" width="276" height="276"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DSN-Fs-71I" secondAttribute="height" multiplier="1:1" id="IxT-li-ZUV"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="letter_piece" translatesAutoresizingMaskIntoConstraints="NO" id="WlL-ql-p2b">
+                                <rect key="frame" x="69" y="230" width="276" height="276"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WlL-ql-p2b" secondAttribute="height" multiplier="1:1" id="3Nt-oP-qBv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="width" secondItem="DSN-Fs-71I" secondAttribute="height" multiplier="1:1" id="0H8-hm-X8s"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0QQ-qQ-Bba"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Jf5-v7-aqm"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SG9-08-1mi"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="TuV-xL-fP6"/>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="U9F-7j-lkZ"/>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dmS-6H-WsI"/>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gfr-NJ-QzD"/>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hK1-Ri-T7G"/>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hrN-Bj-xuZ"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tI3-wb-5eB"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tvf-XY-eJG"/>
+                            <constraint firstItem="WlL-ql-p2b" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="uLx-3m-2mR"/>
+                            <constraint firstItem="DSN-Fs-71I" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="250:667" id="z9r-cm-ya3"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
+        <image name="letter_piece" width="500" height="500"/>
+        <image name="puzzle_piece" width="500" height="500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
