@@ -127,7 +127,7 @@ Optional:
 
 Code Generation + Navigation
 
-![](https://i.imgur.com/Xh4Ak6w.gif)
+<img src="https://i.imgur.com/Xh4Ak6w.gif" width= 300>
 
 Page Layout
 
@@ -140,12 +140,12 @@ Movie List + Swiping Feature
 
 ![](http://g.recordit.co/X5lTrz1w64.gif)
 
-![](https://i.imgur.com/rilmi6y.gif)
+<img src="https://i.imgur.com/rilmi6y.gif" width= 300>
 
 ### Sprint 3
 **Milestones: Rankings & Congratulations Page**
 
 With 2 users:
 
-![](https://i.imgur.com/PbeKRk5.gif)
-![](https://i.imgur.com/yR6G43j.gif)
+<img src="https://i.imgur.com/PbeKRk5.gif" width= 300>
+<img src="https://i.imgur.com/yR6G43j.gif" width= 300>
