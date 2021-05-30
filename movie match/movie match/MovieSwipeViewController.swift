@@ -255,7 +255,7 @@ class MovieSwipeViewController: UIViewController {
     }
     
     func afterSwipe() {
-        
+        // look for when yes votes = current users 
         let movieQuery = PFQuery(className: "Movies")
         movieQuery.whereKey("yesVotesCode", equalTo: String(self.numUsers) + code)
         
@@ -266,6 +266,7 @@ class MovieSwipeViewController: UIViewController {
                 // if yes votes = number users
                 if let movie = try? movieQuery.getFirstObject() {
                     print("equal yes and users")
+                    // set chosen movie and go to congrats page
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "congratulationsViewController") as! CongratulationsViewController
                     vc.firstMovieTitle = movie["title"] as! String
                     vc.firstSynopsis = movie["synopsis"] as! String
