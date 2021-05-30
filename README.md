@@ -147,5 +147,4 @@ Movie List + Swiping Feature
 
 With 2 users:
 
-<img src="https://i.imgur.com/PbeKRk5.gif" width= 300>
-<img src="https://i.imgur.com/yR6G43j.gif" width= 300>
+<img src="https://i.imgur.com/PbeKRk5.gif" width= 300> <img src="https://i.imgur.com/yR6G43j.gif" width= 300>
