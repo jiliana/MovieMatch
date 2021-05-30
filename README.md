@@ -144,3 +144,5 @@ Movie List + Swiping Feature
 
 ### Sprint 3
 **Milestones: Rankings & Congratulations Page**
+
+![](https://i.imgur.com/pXJghlh.gif)
