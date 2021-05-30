@@ -31,10 +31,11 @@ Helps find a movie to watch in a group setting. Everyone within the same group w
 - [x] User can swipe movies right or left based on their preference
 - [x] Generate code and code login (kahoot style)
 - [x] Swiping has animations
-- [ ] Rankings of the group's favorite movies
+- [x] Rankings of the group's favorite movies
 
 **Optional Nice-to-have Stories**
-- [ ] Specified moveis based on streaming services
+- [x] App Icon and Launch Page
+- [ ] Specified move is based on streaming services
 - [ ] Saving user information/preference
 
 ### 2. Screen Archetypes
@@ -133,10 +134,13 @@ Page Layout
 <img src="https://i.imgur.com/rP1UsEK.png" width=600>
 
 ### Sprint 2
-**Milestones: swiping**
-![](http://g.recordit.co/X5lTrz1w64.gif)
-
+**Milestones: Swiping**
 
 Movie List + Swiping Feature
 
+![](http://g.recordit.co/X5lTrz1w64.gif)
+
 ![](https://i.imgur.com/rilmi6y.gif)
+
+### Sprint 3
+**Milestones: Rankings & Congratulations Page**
