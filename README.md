@@ -92,24 +92,195 @@ Optional:
 ### Networking
 #### List of network requests by screen
   - Code Screen
-      - (Create/Read) Create a new code or use an existing code
+      - (Create) Create a new code
+      - (Read) Use an existing code
+
+```
+let room = PFObject(className: "Room")
+
+// code is based on the first 8 characters of a UUID (universally unique identifier)
+let uuid = UUID().uuidString
+room["code"] = String(uuid.split(separator: "-")[0])
+room["maxUsers"] = maxUsersField.text!
+room["currentUsers"] = 1
+
+// Saves PFObject "room" with unique "code" key
+// if input number is positive, else show error
+if (Int(self.maxUsersField.text!) ?? -1 > 0) {
+    room.saveInBackground { (success, error) in
+        if (success) {
+            // Hidden: Error message
+            // Updates code and total users
+            self.code = room["code"] as! String
+            self.totalUsers = self.maxUsersField.text!
+            self.currentUsers = room["currentUsers"] as! Int
+            self.performSegue(withIdentifier: "enterWaitingRoomSegue", sender: nil)
+        } else {
+            print("Error: \(error?.localizedDescription ?? "cannot save room object")")
+        }
+    }
+}
+else {
+    self.invalidNumberLabel.isHidden = false
+}
+```
+
+```
+let query = PFQuery(className: "Room")
+query.whereKey("code", equalTo: codeInput)
+query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+    if let error = error {
+        // Log details of the failure
+        print(error.localizedDescription)
+    } else if let objects = objects {
+        // Gets room with same code
+        if let room = try? query.getFirstObject() {
+            // updates currentUsers and total users
+            self.currentUsers = room["currentUsers"] as! Int
+            room.setValue(self.currentUsers, forKey: "currentUsers")
+            self.totalUsers = room["maxUsers"] as! String
+            let maxUsersInt = Int(self.totalUsers)
+            print(self.currentUsers)
+            print(maxUsersInt!)
+            
+            // increments currentUsers if room is not full
+            if (self.currentUsers < maxUsersInt!) {
+                print("increment")
+                room.incrementKey("currentUsers")
+                self.currentUsers = room["currentUsers"] as! Int
+            }
+            // else, sets error
+            else {
+                self.totalUsers = "fullRoom"
+            }
+            room.saveInBackground { (success, error) in
+                if (success) {
+                    print("currentUsers has been saved")
+                }
+                else {
+                    print("Error: \(error?.localizedDescription ?? "currentUsers cannot be saved")")
+                }
+            }
+        }
+        // The find succeeded
+        // Hidden: Increments number of users in room
+        // Hidden: Enter waiting room
+    }
+}
+```
+  - Waiting Room Screen
+      - (READ/Get) Number of users in room
+```
+let query = PFQuery(className: "Room")
+query.whereKey("code", equalTo: code)
+query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+    if let error = error {
+        // Log details of the failure
+        print(error.localizedDescription)
+    } else if let objects = objects {
+        //creates room object based on object found by query
+        if let room = try? query.getFirstObject() {
+            // updates currentUsers and total users
+            let currUsers = room["currentUsers"] as! Int
+            self.currentUsers = currUsers
+           // self.peopleEnteredLabel.text = "\(self.currentUsers) out of \(self.maxUsers) entered"
+            self.reload();
+        }
+    }
+}
+  ```
   - Movie Choosing Screen
-      - (Create) Create a 'yes/no' vote for each movie
+    - (Create) An object for each movie 
+    - (Create) Create a 'yes/no' vote for each movie
+```
+let movieQuery = PFQuery(className: "Movies")
+            movieQuery.whereKey("titlecode", equalTo: currTitle + code)
+            
+            movieQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                else if let objects = objects {
+                    // if movie object exists, yesVotes += 1
+                    if let movie = try? movieQuery.getFirstObject() {
+                        movie.incrementKey("yesVotes")
+                        
+                        let yesVotesNum = movie["yesVotes"] as! Int
+                        movie["yesVotesCode"] = String(yesVotesNum) + self.code
+                        
+                        movie.saveInBackground { (success, error) in
+                            if (success) {
+                                print("added yes vote to movie")
+                            }
+                            else {
+                                print("Error: \(error?.localizedDescription ?? "could not vote yes")")
+                            }
+                        }
+                        //self.numYesVotes = movie["yesVotes"] as! Int
+                    }
+                    
+                    // if movie object does not exist, make a new movie object
+                    if (objects.count == 0) {
+                        let movie = PFObject(className: "Movies")
+                        movie["title"] = self.currTitle
+                        movie["titlecode"] = self.currTitle + self.code
+                        movie["synopsis"] = self.currSynopsis
+                        movie["imageUrl"] = self.currImage
+                        movie["yesVotes"] = 1
+                        movie["noVotes"] = 0
+                        movie["room"] = self.code
+                        movie["score"] = 1
+                        
+                        let yesVotesNum = movie["yesVotes"] as! Int
+                        movie["yesVotesCode"] = String(yesVotesNum) + self.code
+                        //self.numYesVotes = movie["yesVotes"] as! Int
+                        
+                        movie.saveInBackground { (success, error) in
+                            if (success) {
+                                print("movie object saved")
+                            }
+                            else {
+                                print("Error: \(error?.localizedDescription ?? "could not save movie object")")
+                            }
+                        }
+                    }
+                    
+                }
+```
   - Ranking Screen
       - (Read/GET) Query all movie ranking results of group
 
     ```
-    let query = PFQuery(className:"MovieRanking")
-    query.whereKey("code", equalTo: currentUser)
-    query.order(byDescending: "yesVotes")
-    query.findObjectsInBackground { (movieRankings: [PFObject]?, error: Error?) in
-       if let error = error { 
-          print(error.localizedDescription)
-       } else if let movieRankings = movieRankings {
-          print("Successfully retrieved \(movieRankings.count) movieRankings.")
-      // TODO: Do something with movie rankings...
-       }
-    }
+    let query = PFQuery(className: "Movies")
+        query.whereKey("room", equalTo: code)
+        query.findObjectsInBackground { [self] (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                // Log details of the failure
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                print("Successfuly retrieved: \(objects.count) movies")
+                
+                for movie in objects{
+                    let yes = movie["yesVotes"] as! Int
+                    let no = movie["noVotes"] as! Int
+                    movie["score"] = (yes - no)
+                    movie.saveInBackground()
+                    self.movieObjects.append(movie)
+                }
+                
+                if(objects.count < 3){
+                    print("Not enough objects")
+                }
+            }
+            
+            movieObjects.sort(by: { movie1, movie2 in
+                let int1 = movie1["score"] as! Int
+                let int2 = movie2["score"] as! Int
+                return int1 > int2
+            })
+            
+            self.tableView.reloadData()
+        }
     ```
    
 **[OPTIONAL: Existing API Endpoints]**
@@ -117,7 +288,7 @@ Optional:
 **Now Playing API from The Movie Database**
 - Base URL - https://developers.themoviedb.org/3/movies/get-now-playing
 
-| HTTP Verb	| Endpoint      | Description |
+| HTTP Verb    | Endpoint      | Description |
    | ------------- | -------- | ------------|
    | GET      | /movie/now_playing  | Get a list of movies in theatre |
    
