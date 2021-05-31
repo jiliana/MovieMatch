@@ -1,4 +1,4 @@
-Original App Design Project - README Template
+Original App Design Project
 ===
 
 # Movie Matcher
@@ -12,11 +12,11 @@ Original App Design Project - README Template
 
 ## Overview
 ### Description
-Helps find a movie to watch in a group setting. Everyone within the same group will say yes or no to a list of movies and the app will return the first movie everyone said yes to.
+Choosing which movie to watch with friends can be difficult. With a few swipes, Movie Matcher can help any group of movie-watchers find their perfect movie match! Users in the same group vote yes or no to a list of movies, and the app will return the first movie everyone votes yes to. The app will also show a ranked list of all movies and vote counts.
 
 ### App Evaluation
 - **Category:** Social and Media
-- **Mobile:** This app would be primarily developed for mobile.
+- **Mobile:** This app is developed for mobile phones.
 - **Story:** A group of friends would individually choose their favorite movies from the provided list of movies. The app would then suggest a movie for the whole group to watch that would fit into everyone's individual desires.
 - **Market:** Any individual could use this app, based within their friend groups.
 - **Habit:** Could be used as often as the user wants based on their social life.
