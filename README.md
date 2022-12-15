@@ -1,7 +1,4 @@
-Original App Design Project
-===
-
-# Movie Matcher
+# Movie Matcher - Original App Design Project 
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -61,21 +58,18 @@ Optional:
     * Movie Swipe Screen
 * Movie Swipe Screen
     * Result Screen when movie is picked between everyone
-* (When done) Result Screen
+* Result Screen
     * Code Generator
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
 <img src="https://i.imgur.com/zytqt41.png" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
+### Digital Wireframes & Mockups
 <img src="https://i.imgur.com/vKA9O3M.png" width= 100> <img src="https://i.imgur.com/ulqaE3u.png" width= 100> <img src="https://i.imgur.com/3JuhQVR.png" width= 100> <img src="https://i.imgur.com/FLiGtMK.png" width= 100> <img src="https://i.imgur.com/xk7rzRQ.png" width= 100>
 
-### [BONUS] Interactive Prototype
-![](https://i.imgur.com/lrgebJ9.gif)
+### Interactive Prototype
+<img src="https://i.imgur.com/lrgebJ9.gif" width=300>
 
-## Schema 
-[This section will be completed in Unit 9]
 ### Models
 #### Movie Ranking
 
@@ -282,8 +276,6 @@ let movieQuery = PFQuery(className: "Movies")
             self.tableView.reloadData()
         }
     ```
-   
-**[OPTIONAL: Existing API Endpoints]**
 
 **Now Playing API from The Movie Database**
 - Base URL - https://developers.themoviedb.org/3/movies/get-now-playing
